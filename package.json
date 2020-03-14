@@ -1,0 +1,11 @@
+{
+  "name": "genapi",
+  "version": "1.0.0",
+  "description": "Generate basic Apis",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Erick King",
+  "license": "ISC"
+}
