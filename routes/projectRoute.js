@@ -3,7 +3,8 @@ const router = express.Router();
 
 const projectController = require("../controllers/projectController");
 
-// router.post('/register', controllerModelo.crearModelo);
+router.post("/", projectController.createProject);
+
 
 
 module.exports = router;
