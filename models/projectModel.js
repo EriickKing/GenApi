@@ -1,4 +1,7 @@
 const mongoose = require("mongoose");
+const {
+  string
+} = require("joi");
 const Schema = mongoose.Schema;
 
 const projectSchema = new Schema({
@@ -14,10 +17,24 @@ const projectSchema = new Schema({
     type: String,
     required: true
   },
-  configProject: [],
+  dbUser: {
+    type: String,
+    required: true
+  },
+  dbPassword: {
+    type: String,
+    required: true
+  },
+  dbUrl: {
+    type: String,
+    required: true
+  },
+  dbName: {
+    type: String,
+    required: true
+  },
   createdAtProject: {
-    type: Date,
-    default: new Date(Date.now())
+    type: String
   },
   updatedAtProject: String,
   statusProject: {
