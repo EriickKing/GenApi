@@ -12,6 +12,16 @@ async function Save(res, model) {
   });
 }
 
+function CreateFile(path, content) {
+  fs.writeFile(
+    path,
+    content,
+    function (err) {
+      if (err) throw err;
+    });
+}
+
 
 exports.content = content;
 exports.Save = Save;
+exports.CreateFile = CreateFile;

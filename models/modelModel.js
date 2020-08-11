@@ -22,7 +22,14 @@ const modelSchema = new Schema({
   createdAtModel: {
     type: String
   },
-  updatedAtModel: String,
+  jwtModel: {
+    type: Boolean,
+    default: false
+  },
+  joiModel: {
+    type: Boolean,
+    default: false
+  },
   statusModel: {
     type: Number,
     default: 1

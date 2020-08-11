@@ -18,12 +18,12 @@ projectController.createProject = async (req, res) => {
       descProject: req.body.descProject,
       createdAtProject: req.body.date
     })
-    // console.log(project)
+
+
     let exists = await Project.find({
       idUser: req.body.idUser,
       titleProject: req.body.titleProject
     })
-    // console.log(exists)
     if (exists.length !== 0) {
       res.status(400).json({
         success: false,
@@ -40,6 +40,11 @@ projectController.createProject = async (req, res) => {
       fs.writeFile(`./Projects/${req.body.idUser}${req.body.titleProject}/index.js`, func.content("./BaseContent/indexProject.js"), function (err) {
         if (err) throw err;
       })
+      fs.writeFile(`./Projects/${req.body.idUser}${req.body.titleProject}/src/routes.js`,
+        `\nmodule.exports = function (app) {\n};`,
+        function (err) {
+          if (err) throw err;
+        })
       fs.writeFile(`./Projects/${req.body.idUser}${req.body.titleProject}/.env`, `DB_USER=${project.dbUrl}\nDB_PASSWORD=${project.dbPassword}\nDB_URL=${project.dbUrl}\nDB_NAME=${project.dbName}`, function (err) {
         if (err) throw err;
       })
@@ -77,21 +82,23 @@ projectController.getProjects = async (req, res) => {
 }
 
 projectController.getOneProject = async (req, res) => {
-    let id = req.params.id
-    let project = await Project.findById(id)
+  let id = req.params.id
+  let project = await Project.findById(id)
 
-    if (project.length === 0) {
-      res.status(404).json({
-        success:false,
-        message: "Project Not Found"
-      })
-    } else {
-      res.status(200).json({
-        success:true,
-        data: project
-      })
-    }
+  if (project.length === 0) {
+    res.status(404).json({
+      success: false,
+      message: "Project Not Found"
+    })
+  } else {
+    res.status(200).json({
+      success: true,
+      data: project
+    })
+  }
 }
+
+
 
 
 module.exports = projectController;
